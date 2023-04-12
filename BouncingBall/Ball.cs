@@ -6,9 +6,9 @@
         private int _row;
         private int _speedCol;
         private int _speedRow;
-        private int _color;
+        private ConsoleColor _color;
 
-        public Ball(int col, int row, int speedCol, int speedRow, int color)
+        public Ball(int col, int row, int speedCol, int speedRow, ConsoleColor color)
         {
             _col = col;
             _row = row;
@@ -19,7 +19,7 @@
 
         public void Show()
         {
-            Console.ForegroundColor = (ConsoleColor)_color;
+            Console.ForegroundColor = _color;
             Console.CursorLeft = _col;
             Console.CursorTop = _row;
             Console.Write("O");
