@@ -29,14 +29,23 @@
         {
             _col += _speedCol;
             _row += _speedRow;
-            if (_col <= 0 || _col >= Console.WindowWidth-1) _speedCol = -_speedCol;
-            if (_row <= 0 || _row >= Console.WindowHeight-1) _speedRow = -_speedRow;
+            if (_col <= 0 || _col >= Console.WindowWidth - 1) _speedCol = -_speedCol;
+            if (_row <= 0 || _row >= Console.WindowHeight - 1) _speedRow = -_speedRow;
         }
-        public void CheckForCollisionAndAdjust(Ball ball2)
+        public void CheckForCollision(Ball ball2)
+        {
+            if (_col != ball2._col || _row != ball2._row) AdjustAfterCollision(ball2);
+        }
+
+        public void AdjustAfterCollision(Ball ball2)
         {
             if (_col != ball2._col || _row != ball2._row) return;
-            var temp1 = _speedCol;
-            var temp2 = _speedRow;
+            AdjustColDirection(ball2);
+            AdjustRowDirection(ball2);
+        }
+        private void AdjustColDirection(Ball ball2)
+        {
+            var ball1SpeedColTemp = _speedCol;
             if (_speedCol == ball2._speedCol)
             {
                 _speedCol = -_speedCol;
@@ -44,8 +53,12 @@
             else
             {
                 _speedCol = ball2._speedCol;
-                ball2._speedCol = temp1;
+                ball2._speedCol = ball1SpeedColTemp;
             }
+        }
+        private void AdjustRowDirection(Ball ball2)
+        {
+            var ball1SpeedRowTemp = _speedRow;
             if (_speedRow == ball2._speedRow)
             {
                 _speedRow = -_speedRow;
@@ -53,9 +66,10 @@
             else
             {
                 _speedRow = ball2._speedRow;
-                ball2._speedRow = temp2;
+                ball2._speedRow = ball1SpeedRowTemp;
             }
         }
+        
         
     }
 }
