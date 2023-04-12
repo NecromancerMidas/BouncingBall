@@ -32,13 +32,11 @@
             if (_col <= 0 || _col >= Console.WindowWidth - 1) _speedCol = -_speedCol;
             if (_row <= 0 || _row >= Console.WindowHeight - 1) _speedRow = -_speedRow;
         }
-        public void CheckForCollision(Ball ball2)
-        {
-            if (_col != ball2._col || _row != ball2._row) AdjustAfterCollision(ball2);
-        }
+        
 
         public void AdjustAfterCollision(Ball ball2)
         {
+            if (_col != ball2._col || _row != ball2._row) AdjustAfterCollision(ball2);
             if (_col != ball2._col || _row != ball2._row) return;
             AdjustColDirection(ball2);
             AdjustRowDirection(ball2);

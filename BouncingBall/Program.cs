@@ -8,7 +8,7 @@ while (true)
     Console.Clear();
     ball.Show();
     ball2.Show(); 
-    ball.CheckForCollision(ball2);
+    ball.AdjustAfterCollision(ball2);
     ball.Move();
     ball2.Move();
     Thread.Sleep(50);
